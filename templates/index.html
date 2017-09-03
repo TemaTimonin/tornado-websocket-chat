@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row align-self-start flex-nowrap" style="height:100vh">
+                <div class="col-4 col-md-auto h-100">
+                    <div>
+                        <form class="form-inline" action="/channel" method="post" id="channel-join-form">
+                            {% module xsrf_form_html() %}
+                            <div class="form-group w-75 p-2">
+                                <label for="channel-join-input" class="sr-only">Channel</label>
+                                <input type="text" name="channel" id="channel-join-input" class="form-control w-100" placeholder="Channel" required>
+                            </div>
+                            <div class="form-group w-25 p-2">
+                                <button class="btn btn-primary w-100" type="submit">Join</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="list-group" id="channels-list" style="max-height:85%;overflow-y:scroll"></div>
+                </div>
+                <div class="col-md p-2 col-auto fluid d-flex flex-column h-100" id="message-area" hidden>
+                    <div class="col-md-8 card border rounded" id="message-list" style="min-height: 85%;overflow-y:scroll" ></div>
+                    <div id="message-form-div" class="col align-bottom">
+                        <form class="form-inline p-2" action="/channel/send" method="post" id="message-form">
+                            {% module xsrf_form_html() %}
+                            <div class="form-group p-1">
+                                <label for="message-input" class="sr-only">Message</label>
+                                <input type="text" name="message" id="message-input" class="form-control" placeholder="Message" required autofocus>
+                            </div>
+                            <div class="form-group p-1">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col col-md-auto">
+                    <a class="btn" id="logout" href="logout">Logout</a>
+                </div>
+            </div>
+        </div> <!-- /container -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="{{ static_url("chat.js") }}" type="text/javascript"></script>
+    </body>
+</html>
